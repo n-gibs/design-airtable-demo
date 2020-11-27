@@ -4,13 +4,13 @@ require("dotenv").config({
 // const queries = require("./src/constants/algolia")
 module.exports = {
   siteMetadata: {
-    title: `Design Shop`,
+    title: `Design Shop Demo`,
     description: `Gatsby Airtable Example. Built using Airtable, Algolia Search, Gatsby Background Image plugin and  React Context API. Containts two sliders, real-time Airtable updates and submenus. Styled using Styled-Components. `,
-    author: `@johnsmilga`,
+    author: `@nicolegibson`,
     titleTemplate: `%s | Gatsby - Airtable`,
     url: `https://gatsby-airtable-design-project.netlify.app/`,
     image: `mainBcg.png`,
-    twitterUsername: `@john_smilga`,
+    twitterUsername: `@dev_with_me`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -25,21 +25,35 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-source-airtable`,
       options: {
-        fonts: [
+        apiKey: process.env.AIRTABLE_API_KEY,
+        concurrency: 5,
+        tables: [
           {
-            family: `Roboto`,
-            variants: [`400`, `500`, `700`],
+            baseId: process.env.AIRTABLE_BASEID,
+            tableName: `Projects`,
+            mapping: {image:`fileNode`}
           },
-          {
-            family: `Open Sans`,
-          },
-          {
-            family: `Caveat`,
-          },
-        ],
-      },
-    },
+        ]
+      }
+    }
+    // {
+    //   resolve: `gatsby-plugin-prefetch-google-fonts`,
+    //   options: {
+    //     fonts: [
+    //       {
+    //         family: `Roboto`,
+    //         variants: [`400`, `500`, `700`],
+    //       },
+    //       {
+    //         family: `Open Sans`,
+    //       },
+    //       {
+    //         family: `Caveat`,
+    //       },
+    //     ],
+    //   },
+    // },
   ],
 }

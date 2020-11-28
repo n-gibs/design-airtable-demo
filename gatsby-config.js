@@ -27,12 +27,17 @@ module.exports = {
     {
       resolve: `gatsby-source-airtable`,
       options: {
-        apiKey: process.env.AIRTABLE_API_KEY,
+        apiKey: process.env.GATSBY_AIRTABLE_API_KEY,
         concurrency: 5,
         tables: [
           {
-            baseId: process.env.AIRTABLE_BASEID,
+            baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
             tableName: `Projects`,
+            mapping: {image:`fileNode`}
+          },
+          {
+            baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
+            tableName: `Customers`,
             mapping: {image:`fileNode`}
           },
         ]

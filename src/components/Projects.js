@@ -6,10 +6,19 @@ import Image from "gatsby-image"
 import SearchButtons from "./SearchButtons"
 const Projects = ({ projects: data, title, page }) => {
   const [projects, setProjects] = React.useState(data)
+  const setBackToAll = () => {
+    setProjects(data)
+  }
   return (
     <Wrapper className="section">
       <Title title={title || "projects"} />
-      {/* search button */}
+      {page && (
+        <SearchButtons
+          projects={data}
+          setProjects={setProjects}
+          setBackToAll={setBackToAll}
+        />
+      )}
       <div className="section-center">
         {projects.map(({ id, data }) => {
           const fluid = data.image.localFiles[0].childImageSharp.fluid
@@ -26,9 +35,11 @@ const Projects = ({ projects: data, title, page }) => {
           )
         })}
       </div>
-      {page &&
-      <Link to='/projects' className='btn'>all projects</Link>
-      }
+      {page && (
+        <Link to="/projects" className="btn">
+          all projects
+        </Link>
+      )}
     </Wrapper>
   )
 }

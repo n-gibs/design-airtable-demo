@@ -33,16 +33,26 @@ module.exports = {
           {
             baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
             tableName: `Projects`,
-            mapping: {image:`fileNode`}
+            mapping: { image: `fileNode` },
           },
           {
             baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
             tableName: `Customers`,
-            mapping: {image:`fileNode`}
+            mapping: { image: `fileNode` },
           },
-        ]
-      }
-    }
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.GATSBY_ALGOLIA_API_KEY,
+        indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME, // for all queries
+        queries: require("./src/constants/algolia"),
+        chunkSize: 10000, // default: 1000
+      },
+    },
     // {
     //   resolve: `gatsby-plugin-prefetch-google-fonts`,
     //   options: {

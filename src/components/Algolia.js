@@ -12,8 +12,19 @@ import {
   connectHits,
 } from "react-instantsearch-dom"
 
+const searchClient = algoliasearch(
+  process.env.GATSBY_ALGOLIA_APP_ID,
+  process.env.GATSBY_ALGOLIA_SEARCH_KEY
+)
+
 const Search = () => {
-  return <h2>algolia search</h2>
+  return <Wrapper>
+    <Title title='search'/>
+    <InstantSearch searchClient={searchClient} indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME}>
+      <SearchBox/>
+      <Hits/>
+    </InstantSearch>
+  </Wrapper>
 }
 
 const Wrapper = styled.section`

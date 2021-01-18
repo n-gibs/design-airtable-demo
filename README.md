@@ -1,3 +1,3 @@
 ## GATSBY DESIGN SITE
 
-this is a design site I made to learn more about gatsby, algolia and airtable.
+this is a design demo site I made to learn more about gatsby and airtable.
